@@ -10,5 +10,19 @@ package stock.market;
  * @author hhh
  */
 public class Wallet {
+    //Singleton
+    private static Wallet wallet = null;
+
+    private Wallet() {
+    }
+
+ 
+    public static Wallet getWallet() {
+        if (wallet == null) {
+            wallet = new Wallet();
+
+        }
+        return wallet;
+    }
     
 }
