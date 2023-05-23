@@ -8,29 +8,36 @@ package stock.market;
  *
  * @author pc
  */
-public class VerificationProxy implements Verification{
-     String VerificationToken = "123";
-    String userToken ="";
+public class VerificationProxy implements Verification {
+    private final String verificationToken = "123";
+    private String userToken = "";
 
-    private Verification MV = new MarketVerification();
+    private final Verification marketVerification;
 
     public VerificationProxy() {
+        marketVerification = new MarketVerification();
     }
-       
+
     public VerificationProxy(String userEnteredCode) {
+        this();
         this.userToken = userEnteredCode;
-        
     }
 
     @Override
     public void MarketAccess() {
-        if (userToken.equalsIgnoreCase(VerificationToken)) {
-         MV.MarketAccess();
-        }else{
-
-            System.out.println("Failed access");
-                System.exit(0);
+        if (isValidUserToken()) {
+            marketVerification.MarketAccess();
+        } else {
+            handleInvalidAccess();
         }
     }
 
+    private boolean isValidUserToken() {
+        return userToken.equalsIgnoreCase(verificationToken);
+    }
+
+    private void handleInvalidAccess() {
+        System.out.println("Failed access");
+        System.exit(0);
+    }
 }
