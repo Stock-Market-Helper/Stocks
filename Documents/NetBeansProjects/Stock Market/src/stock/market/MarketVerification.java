@@ -14,9 +14,10 @@ public class MarketVerification implements Verification{
 
 
 
-    @Override
-    public void MarketAccess() {
-        System.out.println("Market available");
+     @Override
+    public boolean Marketentry() {
+        System.out.println("success entry for the stock market ");
+        return true;
     }
 
 }

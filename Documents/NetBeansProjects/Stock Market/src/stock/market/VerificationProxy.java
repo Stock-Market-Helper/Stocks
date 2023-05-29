@@ -4,40 +4,47 @@
  */
 package stock.market;
 
-/**
- *
- * @author pc
- */
-public class VerificationProxy implements Verification {
-    private final String verificationToken = "123";
-    private String userToken = "";
+public class VerificationProxy implements Verification{
+    String VerificationCode="";
+    String InputedCode="";
 
-    private final Verification marketVerification;
+    private Verification me = new MarketVerification();
 
     public VerificationProxy() {
-        marketVerification = new MarketVerification();
     }
 
-    public VerificationProxy(String userEnteredCode) {
-        this();
-        this.userToken = userEnteredCode;
+    public String getVerificationCode() {
+        return VerificationCode;
+    }
+
+    public void setVerificationCode(String VerificationCode) {
+        this.VerificationCode = VerificationCode;
+    }
+
+    public String getInputedCode() {
+        return InputedCode;
+    }
+
+    public void setInputedCode(String InputedCode) {
+        this.InputedCode = InputedCode;
+    }
+    
+    
+       
+    public VerificationProxy(String InputedCode) {
+        this.InputedCode = InputedCode;
+        
     }
 
     @Override
-    public void MarketAccess() {
-        if (isValidUserToken()) {
-            marketVerification.MarketAccess();
-        } else {
-            handleInvalidAccess();
+    public boolean Marketentry() {
+        if (InputedCode.equalsIgnoreCase(VerificationCode)) {
+         me.Marketentry();
+         return true;
+        }else{
+            System.out.println("sorry failed to enter the stock market");
+                return false;
         }
     }
 
-    private boolean isValidUserToken() {
-        return userToken.equalsIgnoreCase(verificationToken);
-    }
-
-    private void handleInvalidAccess() {
-        System.out.println("Failed access");
-        System.exit(0);
-    }
 }
