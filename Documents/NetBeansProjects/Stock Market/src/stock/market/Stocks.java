@@ -85,6 +85,7 @@ public class Stocks {
 
         } else {
             System.out.println("You sold it");
+            Wallet.getWallet().setBalance(Wallet.getWallet().getBalance() + sum);
             Wallet.getWallet().sellStock(Stockname, amount);
             logger.info("INFO: A new order was created");
 

@@ -118,6 +118,26 @@ public class Wallet {
 
                     }
                     break;
+                }else{
+                    if (amountelement != amount) {
+                        amountelement-=amount;
+                    StocksAmount.remove(amountelement);
+                    if (stockName == "Aramco") {
+
+                        int number = data.aramco - amount;
+                        data.setAramco(number);
+
+                    } else if (stockName == "Google") {
+                        int number = data.google - amount;
+                        data.setGoogle(number);
+
+                    } else if (stockName == "Apple") {
+                        int number = data.apple - amount;
+                        data.setApple(number);
+
+                    }
+                    break; 
+                }
                 }
             }
 
