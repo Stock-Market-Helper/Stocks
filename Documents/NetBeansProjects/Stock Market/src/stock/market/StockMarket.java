@@ -152,6 +152,7 @@ public class StockMarket {
         data_info.setBalance(balance);
         data_info.setAuthorizationCode(code);
         db.Saveinfo(data_info);
+        wallet.setAutho(String.valueOf(data_info.getAuthorizationCode()));
     }
 
     private static boolean loginApp(Scanner in, Wallet wallet) throws SQLException, ClassNotFoundException {
